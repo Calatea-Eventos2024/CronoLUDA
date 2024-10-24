@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Temporizador Torneo</title>
+</head>
+
+<body>
+    <!-- 2.1 Navbar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <img src="assets/logoCMM.png" alt="Logo" id="navbar-logo">
+            <span>Liga Universitaria de Debate Académico</span>
+        </div>
+    </nav>
+
+    <!-- 2.2 Sección Principal -->
+    <div class="main-section">
+        <!-- 2.2.1 Botones de Control -->
+        <div class="control-buttons">
+            <button class="btn" id="play">Empezar</button>
+            <button class="btn" id="pause">Pausar</button>
+            <button class="btn" id="reload" >Reiniciar</button>
+        </div>
+
+        <!-- 2.2.2 Reloj -->
+        <div class="clock">
+            <span class="minutes">00</span>:<span class="seconds">00</span>
+        </div>
+
+        <!-- 2.2.3 Navegación de Roles -->
+        <div class="role-navigation">
+            <button class="btn" id="prevRole">Rol Anterior</button>
+            <span class="current-role" id="currentRole"></span>
+            <button class="btn" id="nextRole">Próximo Rol</button>
+        </div>
+        
+    </div>
+
+    <!-- 2.3 Footer -->
+    <footer class="footer">
+        Calatea Eventos
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

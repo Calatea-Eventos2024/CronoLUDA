@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Temporizador Torneo</title>
+</head>
+
+<body>
+    <!-- 2.1 Navbar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <img src="assets/logoCMM.png" alt="Logo" id="navbar-logo">
+            <span id="navbar-text">Liga Universitaria de Debate Académico</span>
+        </div>
+    </nav>
+
+    <!-- 2.2 Sección Principal -->
+    <div class="main-section">
+        <!-- 2.2.1 Botones de Control -->
+        <div class="control-buttons">
+            <button class="btn" id="play">EMPEZAR</button>
+            <button class="btn" id="pause">PAUSAR</button>
+            <button class="btn" id="reload" >REINICIAR</button>
+        </div>
+
+        <!-- 2.2.2 Reloj -->
+        <div class="clock">
+            <div class="clock-face" id="clock-face">
+                00:00
+            </div>
+        </div>
+
+        <!-- 2.2.3 Navegación de Roles -->
+        <div class="role-navigation">
+            <button class="btn" id="prevRole">ROL ANTERIOR</button>
+            <span class="current-role" id="currentRole"></span>
+            <button class="btn" id="nextRole">PRÓXIMO ROL</button>
+        </div>
+        
+    </div>
+
+    <!-- 2.3 Footer -->
+    <footer class="footer">
+        Asociación de Colegios Mayores de Madrid - Calatea Eventos S.L.
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>// Definición de roles y tiempo
+        const roles = [
+            { nombre: 'INTRODUCCIÓN', tiempo: 20, color: "#4A72B2"},
+            { nombre: 'INTRODUCCIÓN', tiempo: 240, color: "#A01127"},
+            { nombre: '1ª REFUTACIÓN', tiempo: 300, color: "#4A72B2"},
+            { nombre: '1ª REFUTACIÓN', tiempo: 300, color: "#A01127"},
+            { nombre: '2ª REFUTACIÓN', tiempo: 300, color: "#4A72B2"},
+            { nombre: '2ª REFUTACIÓN', tiempo: 300, color: "#A01127"},
+            { nombre: 'CONCLUSIÓN', tiempo: 240, color: "#A01127"},
+            { nombre: 'CONCLUSIÓN', tiempo: 240, color: "#4A72B2"},
+            { nombre: 'DELIBERACIÓN', tiempo: 900, color: "#fff"}
+        ];
+        
+        let indiceRolActual = 0;
+        let tiempoRestante = roles[indiceRolActual].tiempo;
+        let intervalo;
+        
+        // Función para actualizar el reloj
+        function actualizarReloj() {
+            const minutos = Math.floor(tiempoRestante / 60);
+            const segundos = tiempoRestante % 60;
+            document.querySelector('.clock-face').textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        
+            if (tiempoRestante === 15 || tiempoRestante === 10 || tiempoRestante === 5 || tiempoRestante === 0 ) {
+                document.getElementById('clock-face').style.backgroundColor = 'rgba(227, 4, 18, 0.6)'; // Rojo
+            } else {
+                document.getElementById('clock-face').style.backgroundColor = 'rgba(255, 255, 255, 0.65)'; // Blanco
+            }
+            
+        }
+        
+        // Botón Empezar
+        document.getElementById('play').addEventListener('click', () => {
+            if (intervalo) return;  // Si el reloj ya está corriendo, no hacer nada
+            if (tiempoRestante === 0) return;
+            intervalo = setInterval(() => {
+                tiempoRestante--;
+                actualizarReloj();
+                if (tiempoRestante <= 0) {
+                    clearInterval(intervalo);
+                    intervalo = null;
+                }
+            }, 1000);
+        });
+        
+        // Botón Pausa
+        document.getElementById('pause').addEventListener('click', () => {
+            clearInterval(intervalo);
+            intervalo = null;
+        });
+        
+        // Botón Reiniciar
+        document.getElementById('reload').addEventListener('click', () => {
+            tiempoRestante = roles[indiceRolActual].tiempo;
+            actualizarReloj();
+            clearInterval(intervalo);
+            intervalo = null;
+        });
+        
+        // Función para actualizar el rol y el reloj
+        function actualizarRol() {
+            document.getElementById('currentRole').textContent = `${roles[indiceRolActual].nombre}`;
+            // document.getElementById('currentRole').style.color = rolActual.color;
+            document.getElementById('currentRole').style.color = `${roles[indiceRolActual].color}`;
+            tiempoRestante = roles[indiceRolActual].tiempo;
+            actualizarReloj();
+            clearInterval(intervalo);
+            intervalo = null;
+        
+            // Deshabilitar o habilitar botones de navegación de roles
+            document.getElementById('prevRole').disabled = indiceRolActual === 0;
+            document.getElementById('nextRole').disabled = indiceRolActual === roles.length - 1;
+        }
+        
+        // Botón Rol Anterior
+        document.getElementById('prevRole').addEventListener('click', () => {
+            if (indiceRolActual > 0) {
+                indiceRolActual--;
+                actualizarRol();
+            }
+        });
+        
+        // Botón Próximo Rol
+        document.getElementById('nextRole').addEventListener('click', () => {
+            if (indiceRolActual < roles.length - 1) {
+                indiceRolActual++;
+                actualizarRol();
+            }
+        });
+        
+        actualizarReloj();
+        
+        
+        // Inicializar reloj y botones de navegación de roles
+        actualizarRol();
+        
+        // ...resto del código...
+        </script>
+</body>
+
+</html>

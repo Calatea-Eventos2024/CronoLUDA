@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Temporizador CMM</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    
+</head>
+
+<body>
+    <!-- 2.1 Navbar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div>
+                <!-- <span id="navbar-text">Fase final</span> -->
+                <!-- <img src="assets/logoCMM.png" alt="Logo" id="navbar-logo1"> -->
+            <span id="navbar-text">Liga Universitaria de Debate Académico</span>
+
+            </div>
+            <!-- <span id="navbar-text">Liga Universitaria de Debate Académico</span> -->
+            <!-- <span id="navbar-text">XIV Torneo de Debate de Colegios Mayores</span> -->
+        </div>
+    </nav>
+    <!-- 2.2 Sección Principal -->
+    <div class="main-section">
+        <!-- 2.2.1 Botones de Control -->
+        <div class="control-buttons">
+            <button class="btn" id="play">EMPEZAR</button>
+            <button class="btn" id="pause">PAUSAR</button>
+            <button class="btn" id="reload" >REINICIAR</button>
+        </div>
+
+        <!-- 2.2.2 Reloj -->
+        <div class="clock">
+            <div class="clock-face" id="clock-face">
+                00:00
+            </div>
+        </div>
+
+        <!-- 2.2.3 Navegación de Roles -->
+        <div class="role-navigation">
+            <button class="btn" id="prevRole">ANTERIOR</button>
+            <span class="current-role" id="currentRole"></span>
+            <button class="btn" id="nextRole">SIGUIENTE</button>
+        </div>
+        
+    </div>
+
+    <!-- 2.3 Footer -->
+    <footer class="footer">
+        <span></span>
+        <!-- <img src="assets/Escudo_del_Senado_de_España.svg" alt="Logo" id="navbar-logo1"> -->
+        Asociación de Colegios Mayores de Madrid - Calatea Eventos S.L. 
+    </footer>
+
+    <!-- <footer class="footer">
+        <div class="footer-content">
+            Asociación de Colegios Mayores de Madrid - Calatea Eventos S.L.
+        </div>
+    </footer> -->
+    
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
